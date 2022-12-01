@@ -1,0 +1,145 @@
+root@bananapi:/home/pi/Desktop# quectel-pppd.sh /dev/ttyUSB2 ctnet ctnet@mycdma.cn vnet.mobi
+quectel-pppd options in effect:
+devname   /dev/ttyUSB2    # (from command line)
+apn       ctnet    # (from command line)
+user      ctnet@mycdma.cn   # (from command line)
+password  vnet.mobi   # (from command line)
+root@bananapi:/home/pi/Desktop# pppd options in effect:
+debug		# (from command line)
+nodetach		# (from command line)
+dump		# (from command line)
+noauth		# (from command line)
+user ctnet@mycdma.cn		# (from command line)
+password ??????		# (from command line)
+/dev/ttyUSB2		# (from command line)
+115200		# (from command line)
+lock		# (from command line)
+connect ''chat -s -v ABORT BUSY ABORT \"NO CARRIER\" ABORT \"NO DIALTONE\" ABORT ERROR ABORT \"NO ANSWER\" TIMEOUT 30 \"\" AT OK ATE0 OK ATI\\;+CSUB\\;+CSQ\\;+CPIN?\\;+COPS?\\;+CGREG?\\;\\&D2 OK AT+CGDCONT=1,\\\"IP\\\",\\\"ctnet\\\",,0,0 OK ATD*99# CONNEC
+		# (from command line)
+disconnect chat -s -v ABORT ERROR ABORT \"NO DIALTONE\" SAY \"\\nSending break to the modem\\n\" \"\" +++ \"\" +++ \"\" +++ SAY \"\\nGood bay\\n\"		# (from command line)
+nocrtscts		# (from command line)
+modem		# (from command line)
+asyncmap 0		# (from /etc/ppp/options)
+lcp-echo-failure 4		# (from /etc/ppp/options)
+lcp-echo-interval 30		# (from /etc/ppp/options)
+hide-password		# (from /etc/ppp/options)
+novj		# (from command line)
+novjccomp		# (from command line)
+ipcp-accept-local		# (from command line)
+ipcp-accept-remote		# (from command line)
+noipdefault		# (from command line)
+ipcp-max-configure 30		# (from command line)
+defaultroute		# (from command line)
+usepeerdns		# (from command line)
+noccp		# (from command line)
+noipx		# (from /etc/ppp/options)
+abort on (BUSY)
+abort on (NO CARRIER)
+abort on (NO DIALTONE)
+abort on (ERROR)
+abort on (NO ANSWER)
+timeout set to 30 seconds
+send (AT^M)
+expect (OK)
+^M
+OK
+ -- got it
+
+send (ATE0^M)
+expect (OK)
+^M
+^M
+OK
+ -- got it
+
+send (ATI;+CSUB;+CSQ;+CPIN?;+COPS?;+CGREG?;&D2^M)
+expect (OK)
+^M
+^M
+Quectel^M
+EC20F^M
+Revision: EC20CEHCLGR06A05M1G^M
+^M
+SubEdition: V02^M
+^M
++CSQ: 27,99^M
+^M
++CPIN: READY^M
+^M
++COPS: 0,0,"CHN-CT",7^M
+^M
++CGREG: 0,1^M
+^M
+OK
+ -- got it
+
+send (AT+CGDCONT=1,"IP","ctnet",,0,0^M)
+expect (OK)
+^M
+^M
+OK
+ -- got it
+
+send (ATD*99#^M)
+expect (CONNECT)
+^M
+^M
+CONNECT
+ -- got it
+
+Script ''chat -s -v ABORT BUSY ABORT "NO CARRIER" ABORT "NO DIALTONE" ABORT ERROR ABORT "NO ANSWER" TIMEOUT 30 "" AT OK ATE0 OK ATI\;+CSUB\;+CSQ\;+CPIN?\;+COPS?\;+CGREG?\;\&D2 OK AT+CGDCONT=1,\"IP\",\"ctnet\",,0,0 OK ATD*99# CONNECT'' finished (pid 5747), status = 0x0
+Serial connection established.
+using channel 3
+Using interface ppp0
+Connect: ppp0 <--> /dev/ttyUSB2
+sent [LCP ConfReq id=0x1 <asyncmap 0x0> <magic 0xab613e87> <pcomp> <accomp>]
+rcvd [LCP ConfReq id=0x4 <asyncmap 0x0> <auth chap MD5> <magic 0x62f28a3> <pcomp> <accomp>]
+sent [LCP ConfAck id=0x4 <asyncmap 0x0> <auth chap MD5> <magic 0x62f28a3> <pcomp> <accomp>]
+rcvd [LCP ConfAck id=0x1 <asyncmap 0x0> <magic 0xab613e87> <pcomp> <accomp>]
+sent [LCP EchoReq id=0x0 magic=0xab613e87]
+rcvd [LCP DiscReq id=0x5 magic=0x62f28a3]
+rcvd [CHAP Challenge id=0x1 <b37307eb8534af403ef286fcf4ae1899>, name = "UMTS_CHAP_SRVR"]
+sent [CHAP Response id=0x1 <acf20376f5e5f547a5115227c1178ba8>, name = "ctnet@mycdma.cn"]
+rcvd [LCP EchoRep id=0x0 magic=0x62f28a3 ab 61 3e 87]
+rcvd [CHAP Success id=0x1 ""]
+CHAP authentication succeeded
+CHAP authentication succeeded
+sent [IPCP ConfReq id=0x1 <addr 0.0.0.0> <ms-dns1 0.0.0.0> <ms-dns2 0.0.0.0>]
+rcvd [IPCP ConfReq id=0x4]
+sent [IPCP ConfNak id=0x4 <addr 0.0.0.0>]
+rcvd [IPCP ConfNak id=0x1 <addr 10.151.120.230> <ms-dns1 61.134.1.6> <ms-dns2 218.20.19.40>]
+sent [IPCP ConfReq id=0x2 <addr 10.151.120.230> <ms-dns1 61.134.1.6> <ms-dns2 218.20.19.40>]
+rcvd [IPCP ConfReq id=0x5]
+sent [IPCP ConfAck id=0x5]
+rcvd [IPCP ConfAck id=0x2 <addr 10.151.120.230> <ms-dns1 61.134.1.6> <ms-dns2 218.20.19.40>]
+Could not determine remote IP address: defaulting to 10.64.64.64
+local  IP address 10.151.120.230
+remote IP address 10.64.64.64
+primary   DNS address 61.134.1.6
+secondary DNS address 218.20.19.40
+Script /etc/ppp/ip-up started (pid 5771)
+Script /etc/ppp/ip-up finished (pid 5771), status = 0x0
+
+root@bananapi:/home/pi/Desktop# 
+root@bananapi:/home/pi/Desktop# ifconfig ppp0
+ppp0: flags=4305<UP,POINTOPOINT,RUNNING,NOARP,MULTICAST>  mtu 1500
+        inet 10.151.120.230  netmask 255.255.255.255  destination 10.64.64.64
+        ppp  txqueuelen 3  (Point-to-Point Protocol)
+        RX packets 6  bytes 406 (406.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 6  bytes 207 (207.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+root@bananapi:/home/pi/Desktop# ping www.baidu.com
+PING www.a.shifen.com (14.215.177.38) 56(84) bytes of data.
+64 bytes from 14.215.177.38 (14.215.177.38): icmp_seq=1 ttl=54 time=65.8 ms
+64 bytes from 14.215.177.38 (14.215.177.38): icmp_seq=2 ttl=54 time=51.7 ms
+64 bytes from 14.215.177.38 (14.215.177.38): icmp_seq=3 ttl=54 time=50.2 ms
+64 bytes from 14.215.177.38 (14.215.177.38): icmp_seq=4 ttl=54 time=58.4 ms
+64 bytes from 14.215.177.38 (14.215.177.38): icmp_seq=5 ttl=54 time=60.4 ms
+64 bytes from 14.215.177.38 (14.215.177.38): icmp_seq=6 ttl=54 time=86.4 ms
+64 bytes from 14.215.177.38 (14.215.177.38): icmp_seq=7 ttl=54 time=58.5 ms
+^C
+--- www.a.shifen.com ping statistics ---
+7 packets transmitted, 7 received, 0% packet loss, time 6010ms
+rtt min/avg/max/mdev = 50.236/61.637/86.435/11.234 ms

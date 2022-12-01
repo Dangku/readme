@@ -1,0 +1,54 @@
+root@bananapi:/home/pi/Desktop# quectel-CM &
+[1] 6703
+root@bananapi:/home/pi/Desktop# [11-30_03:12:52:658] QConnectManager_Linux_V1.6.3.2
+[11-30_03:12:52:664] Find /sys/bus/usb/devices/1-1.4 idVendor=0x2c7c idProduct=0x125, bus=0x001, dev=0x005
+[11-30_03:12:52:690] Auto find qmichannel = /dev/cdc-wdm0
+[11-30_03:12:52:690] Auto find usbnet_adapter = wwan0
+[11-30_03:12:52:692] netcard driver = qmi_wwan, driver version = 22-Aug-2005
+[11-30_03:12:52:693] Modem works in QMI mode
+[11-30_03:12:52:733] cdc_wdm_fd = 7
+[11-30_03:12:52:832] Get clientWDS = 18
+[11-30_03:12:52:864] Get clientDMS = 2
+[11-30_03:12:52:896] Get clientNAS = 3
+[11-30_03:12:52:928] Get clientUIM = 1
+[11-30_03:12:52:960] Get clientWDA = 1
+[11-30_03:12:52:992] requestBaseBandVersion EC20CEHCLGR06A05M1G
+[11-30_03:12:53:121] requestGetSIMStatus SIMStatus: SIM_READY
+[11-30_03:12:53:152] requestGetProfile[1] ctnet/m2m/vnet.mobi/3/IPV4
+[11-30_03:12:53:184] requestRegistrationState2 MCC: 460, MNC: 11, PS: Attached, DataCap: LTE
+[11-30_03:12:53:217] requestQueryDataCall IPv4ConnectionStatus: DISCONNECTED
+[11-30_03:12:53:217] ifconfig wwan0 0.0.0.0
+[11-30_03:12:53:230] ifconfig wwan0 down
+[11-30_03:12:53:279] requestSetupDataCall WdsConnectionIPv4Handle: 0xe183e770
+[11-30_03:12:53:409] ifconfig wwan0 up
+[11-30_03:12:53:437] busybox udhcpc -f -n -q -t 5 -i wwan0
+udhcpc: started, v1.30.1
+udhcpc: sending discover
+udhcpc: sending select for 10.151.120.230
+udhcpc: lease of 10.151.120.230 obtained, lease time 7200
+
+root@bananapi:/home/pi/Desktop# ifconfig wwan0
+wwan0: flags=4305<UP,POINTOPOINT,RUNNING,NOARP,MULTICAST>  mtu 1500
+        inet 10.151.120.230  netmask 255.255.255.252  destination 10.151.120.230
+        inet6 fe80::1e6d:d5f6:77d:b331  prefixlen 64  scopeid 0x20<link>
+        unspec 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  txqueuelen 1000  (UNSPEC)
+        RX packets 33  bytes 5027 (5.0 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 49  bytes 4633 (4.6 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+root@bananapi:/home/pi/Desktop# ping www.baidu.com
+PING www.a.shifen.com (14.215.177.39) 56(84) bytes of data.
+64 bytes from 14.215.177.39 (14.215.177.39): icmp_seq=1 ttl=54 time=1017 ms
+64 bytes from 14.215.177.39 (14.215.177.39): icmp_seq=2 ttl=54 time=113 ms
+64 bytes from 14.215.177.39 (14.215.177.39): icmp_seq=3 ttl=54 time=564 ms
+64 bytes from 14.215.177.39 (14.215.177.39): icmp_seq=4 ttl=54 time=66.1 ms
+64 bytes from 14.215.177.39 (14.215.177.39): icmp_seq=5 ttl=54 time=122 ms
+64 bytes from 14.215.177.39 (14.215.177.39): icmp_seq=6 ttl=54 time=67.0 ms
+64 bytes from 14.215.177.39 (14.215.177.39): icmp_seq=7 ttl=54 time=114 ms
+64 bytes from 14.215.177.39 (14.215.177.39): icmp_seq=8 ttl=54 time=68.5 ms
+64 bytes from 14.215.177.39 (14.215.177.39): icmp_seq=9 ttl=54 time=68.5 ms
+^C
+--- www.a.shifen.com ping statistics ---
+9 packets transmitted, 9 received, 0% packet loss, time 8017ms
+rtt min/avg/max/mdev = 66.068/244.462/1017.419/311.735 ms, pipe 2
